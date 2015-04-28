@@ -1,0 +1,11 @@
+language: cpp
+script: mkdir build && cd build && cmake .. && make && make test
+compiler:
+    - gcc
+    - clang
+before_install:
+    - wget http://www.cmake.org/files/v3.1/cmake-3.1.3-Linux-x86_64.sh && sudo /bin/sh cmake-3.1.3-Linux-x86_64.sh --prefix=/usr --exclude-subdir
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    - sudo apt-get update -qq
+    - if [ "$CC" = "gcc" ]; then sudo apt-get install -qq gcc-4.8; export CC="gcc-4.8"; fi
+    - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; export CXX="g++-4.8"; fi
